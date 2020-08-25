@@ -15,7 +15,7 @@ function ModalRegister({ setShowModalRegister }) {
     phone: "",
     address: "",
   });
-  
+
   const handleChangeRegister = (event) => {
     setInputRegister({
       ...inputRegister,
@@ -32,7 +32,6 @@ function ModalRegister({ setShowModalRegister }) {
         localStorage.setItem("email", res.data.data.email);
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("userId", res.data.data.id);
-        localStorage.setItem("image", res.data.data.image);
         setShowModalRegister(false);
         history.push(currentPathname);
       });

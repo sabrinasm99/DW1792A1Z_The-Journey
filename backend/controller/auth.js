@@ -44,7 +44,6 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       phone,
       address,
-      image: null,
     });
 
     const token = jwt.sign(
@@ -60,7 +59,6 @@ exports.register = async (req, res) => {
         email: dataUser.email,
         token,
         id: dataUser.id,
-        image: dataUser.image,
       },
     });
   } catch (err) {
