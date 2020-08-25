@@ -18,14 +18,40 @@ exports.postJourney = async (req, res) => {
         model: User,
         as: "user",
         attributes: {
-          exclude: ["userId", "UserId", "createdAt", "updatedAt"],
+          exclude: ["createdAt", "updatedAt"],
         },
       },
       attributes: {
-        exclude: ["createdAt", "updatedAt"],
+        exclude: ["userId", "UserId", "createdAt", "updatedAt"],
       },
     });
-    res.status(200).send({ message: "Response Success", data: findJourney });
+    res
+      .status(200)
+      .send({ message: "Success Post Journey", data: findJourney });
+  } catch (err) {
+    res.status(500).send({
+      error: {
+        message: err.message,
+      },
+    });
+  }
+};
+
+exports.readJourneys = async (req, res) => {
+  try {
+    const findJourneys = await Journey.findAll({
+      include: {
+        model: User,
+        as: "user",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
+      },
+      attributes: {
+        exclude: ["userId", "UserId", "createdAt", "updatedAt"],
+      },
+    });
+    res.status(200).send({ message: "Response Success", data: findJourneys });
   } catch (err) {
     res.status(500).send({
       error: {
