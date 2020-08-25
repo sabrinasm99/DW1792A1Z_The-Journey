@@ -42,22 +42,24 @@ function Header({ setShowModalLogin, setShowModalRegister }) {
             style={{ top: "75px", left: "1133px" }}
           >
             <div className="px-5">
-              {/* <Link to="/profile"> */}
-              <div className="flex py-1 cursor-pointer hover:bg-blue-200">
-                <img src={profile} className="mr-2" />
-                <h2>Profile</h2>
-              </div>
-              {/* </Link> */}
-              {/* <Link to={`/payment/${orderId}`}> */}
-              <div className="flex py-1 cursor-pointer hover:bg-blue-200">
-                <img src={write} className="mr-2" />
-                <h2>New Journey</h2>
-              </div>
-              {/* </Link> */}
-              <div className="flex py-1 cursor-pointer hover:bg-blue-200">
-                <img src={bookmark} className="mr-2" />
-                <h2>Bookmark</h2>
-              </div>
+              <Link to="/profile">
+                <div className="flex py-1 cursor-pointer hover:bg-blue-200">
+                  <img src={profile} className="mr-2" />
+                  <h2>Profile</h2>
+                </div>
+              </Link>
+              <Link to="/new-journey">
+                <div className="flex py-1 cursor-pointer hover:bg-blue-200">
+                  <img src={write} className="mr-2" />
+                  <h2>New Journey</h2>
+                </div>
+              </Link>
+              <Link to="/bookmark">
+                <div className="flex py-1 cursor-pointer hover:bg-blue-200">
+                  <img src={bookmark} className="mr-2" />
+                  <h2>Bookmark</h2>
+                </div>
+              </Link>
             </div>
             <hr />
             <div className="px-5">
