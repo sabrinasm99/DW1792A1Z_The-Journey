@@ -2,13 +2,36 @@ import React from "react";
 import dewata from "../image/dewata.png";
 import minibookmark from "../image/minibookmark.svg";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function HomeContent({ posts }) {
   const array = posts.data.data;
   const history = useHistory();
+  const { token, userId } = localStorage;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   const clickDetail = (id) => {
     history.push(`/detail-post/${id}`);
   };
+
+  const addBookmark = (id) => {
+    axios
+      .post(
+        "http://localhost:5000/api/v1/bookmark",
+        { journeyId: id, profileId: userId },
+        config
+      )
+      .then((res) => {
+        alert(res.data.message);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="px-12 mt-10">
       <h1 className="text-4xl font-bold">Journey</h1>
@@ -35,11 +58,11 @@ function HomeContent({ posts }) {
             return (
               <div
                 key={val.id}
-                onClick={() => clickDetail(val.id)}
+                
                 className="relative bg-white rounded shadow-md"
               >
-                <img src={dewata} className="w-full" />
-                <div className="my-3 px-4">
+                <img src={`http://localhost:5000/image/${val.image}`} className="w-full cursor-pointer" onClick={() => clickDetail(val.id)} />
+                <div className="my-3 px-4 cursor-pointer" onClick={() => clickDetail(val.id)}>
                   <h2 className="font-bold text-lg">{val.title}</h2>
                   <h3
                     className="font-light text-xs"
@@ -52,7 +75,8 @@ function HomeContent({ posts }) {
                   </h3>
                 </div>
                 <div
-                  className="absolute bg-white rounded-full p-1"
+                  onClick={() => addBookmark(val.id)}
+                  className="absolute bg-white rounded-full p-1 cursor-pointer"
                   style={{ top: "6px", right: "6px" }}
                 >
                   <img src={minibookmark} />

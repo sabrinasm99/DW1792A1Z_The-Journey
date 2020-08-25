@@ -11,7 +11,7 @@ db.sequelize
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log("Fail Connect Database"));
 
-// app.use('/image', express.static('images'));
+app.use('/image', express.static('images'));
 app.use(cors());
 app.use(bodyParser.json());
 
