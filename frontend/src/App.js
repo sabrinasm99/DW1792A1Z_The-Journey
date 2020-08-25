@@ -28,7 +28,7 @@ function App() {
       </Route>
       <Route path="/bookmark" component={Bookmark} />
       <Route path="/profile" component={Profile} />
-      <Route path="/detail-post" component={DetailPost} />
+      <Route path="/detail-post/:id" component={DetailPost} />
       <Route path="/new-journey" component={NewJourney} />
     </Router>
   );

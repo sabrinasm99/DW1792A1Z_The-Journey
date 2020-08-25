@@ -28,7 +28,9 @@ function Header({ setShowModalLogin, setShowModalRegister }) {
           style={{ backgroundColor: "#F1F1F1" }}
         >
           <div className="px-16 flex">
-            <img src={icon2} />
+            <Link to="/">
+              <img src={icon2} />
+            </Link>
             <img
               src={userprofile}
               onClick={() => setShowModalUser(!showModalUser)}
@@ -86,7 +88,9 @@ function Header({ setShowModalLogin, setShowModalRegister }) {
         >
           <div className="px-16 pt-5">
             <div className="flex">
-              <img src={icon} />
+              <Link to="/">
+                <img src={icon} />
+              </Link>
               <div className="ml-auto">
                 <button
                   onClick={() => setShowModalLogin(true)}

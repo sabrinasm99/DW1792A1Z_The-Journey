@@ -1,5 +1,7 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Journey extends Model {
     /**
@@ -16,18 +18,16 @@ module.exports = (sequelize, DataTypes) => {
       });
       Journey.hasOne(models.Bookmark);
     }
-  }
-  Journey.init(
-    {
-      title: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
-      description: DataTypes.STRING,
-      image: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: "Journey",
-    }
-  );
+  };
+  Journey.init({
+    title: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
+    description: DataTypes.STRING,
+    date: DataTypes.STRING,
+    image: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Journey',
+  });
   return Journey;
 };

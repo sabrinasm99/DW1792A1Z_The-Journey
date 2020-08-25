@@ -24,6 +24,9 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
+      date: {
+        type: Sequelize.STRING,
+      },
       image: {
         type: Sequelize.STRING,
       },
