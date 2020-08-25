@@ -24,7 +24,7 @@ function Home({ setShowModalLogin, setShowModalRegister }) {
         setShowModalLogin={setShowModalLogin}
         setShowModalRegister={setShowModalRegister}
       />
-      <HomeContent posts={data} />
+      <HomeContent posts={data} setShowModalLogin={setShowModalLogin} />
     </>
   );
 }

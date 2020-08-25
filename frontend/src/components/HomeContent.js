@@ -4,7 +4,7 @@ import minibookmark from "../image/minibookmark.svg";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-function HomeContent({ posts }) {
+function HomeContent({ posts, setShowModalLogin }) {
   const array = posts.data.data;
   const history = useHistory();
   const { token, userId } = localStorage;
@@ -20,16 +20,20 @@ function HomeContent({ posts }) {
   };
 
   const addBookmark = (id) => {
-    axios
-      .post(
-        "http://localhost:5000/api/v1/bookmark",
-        { journeyId: id, profileId: userId },
-        config
-      )
-      .then((res) => {
-        alert(res.data.message);
-      })
-      .catch((err) => console.log(err));
+    if (token) {
+      axios
+        .post(
+          "http://localhost:5000/api/v1/bookmark",
+          { journeyId: id, profileId: userId },
+          config
+        )
+        .then((res) => {
+          alert(res.data.message);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      setShowModalLogin(true);
+    }
   };
 
   return (
@@ -57,24 +61,33 @@ function HomeContent({ posts }) {
           array.map((val) => {
             return (
               <div key={val.id} className="relative bg-white rounded shadow-md">
+                {val.image ? 
                 <img
                   src={`http://localhost:5000/image/${val.image}`}
                   className="w-full cursor-pointer"
                   onClick={() => clickDetail(val.id)}
                 />
+                : 
+                <img 
+                src={val.description.replace(/.+<img src="(.+)">.+/, '$1')}
+                className="w-full"
+                />
+                }
                 <div
                   className="my-3 px-4 cursor-pointer"
                   onClick={() => clickDetail(val.id)}
                 >
                   <h2 className="font-bold text-lg">{val.title}</h2>
                   <h3
-                    className="font-light text-xs"
+                    className="text-xs"
                     style={{ color: "#BFBFBF" }}
                   >
                     {val.date}, {val.user.fullName}
                   </h3>
                   <h3 className="mt-3 text-sm" style={{ color: "#6C6C6C" }}>
-                    {val.description}
+                    <div dangerouslySetInnerHTML={{__html: val.description.replace(/<img.+?>/, '')}}>
+
+                    </div>
                   </h3>
                 </div>
                 <div

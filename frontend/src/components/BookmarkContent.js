@@ -32,7 +32,7 @@ function BookmarkContent({ posts }) {
                   >
                     <h2 className="font-bold text-lg">{val.journey.title}</h2>
                     <h3
-                      className="font-light text-xs"
+                      className="text-xs"
                       style={{ color: "#BFBFBF" }}
                     >
                       {val.journey.date}, {val.journey.user.fullName}

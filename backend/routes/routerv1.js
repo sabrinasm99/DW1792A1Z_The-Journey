@@ -23,9 +23,9 @@ router.post("/login", login);
 router.get("/user/:id", authenticated, readDetailUser)
 
 // Journey
-router.post("/journey", authenticated, fileUpload(), postJourney);
+router.post("/journey", authenticated, postJourney);
 router.get("/journeys", readJourneys);
-router.get("/journey/:id", authenticated, readDetailJourney);
+router.get("/journey/:id", readDetailJourney);
 router.get("/journeys-user/:id", authenticated, readJourneysByUserId);
 
 // Bookmark

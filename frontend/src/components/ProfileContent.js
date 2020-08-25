@@ -71,7 +71,7 @@ function ProfileContent({ posts }) {
                   >
                     <h2 className="font-bold text-lg">{val.title}</h2>
                     <h3
-                      className="font-light text-xs"
+                      className="text-xs"
                       style={{ color: "#BFBFBF" }}
                     >
                       {val.date}, {val.user.fullName}

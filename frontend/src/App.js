@@ -10,6 +10,7 @@ import ModalRegister from "./components/subcomponents/ModalRegister";
 import Profile from "./pages/Profile";
 import DetailPost from "./pages/DetailPost";
 import NewJourney from "./pages/NewJourney";
+import PrivateRoute from "./settings/PrivateRoute";
 
 function App() {
   const [showModalLogin, setShowModalLogin] = useState(false);
@@ -26,10 +27,10 @@ function App() {
             setShowModalRegister={setShowModalRegister}
           />
       </Route>
-      <Route path="/bookmark" component={Bookmark} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/detail-post/:id" component={DetailPost} />
-      <Route path="/new-journey" component={NewJourney} />
+      <PrivateRoute path="/bookmark" component={Bookmark} />
+      <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute path="/detail-post/:id" component={DetailPost} />
+      <PrivateRoute path="/new-journey" component={NewJourney} />
     </Router>
   );
 }

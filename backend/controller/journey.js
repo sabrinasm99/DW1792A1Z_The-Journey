@@ -3,16 +3,16 @@ const { Journey, User } = require("../models");
 exports.postJourney = async (req, res) => {
   try {
     const { title, userId, description } = req.body;
-    const { postImage } = req.files;
-    const postImageName = postImage.name;
+    // const { postImage } = req.files;
+    // const postImageName = postImage.name;
     const postJourney = await Journey.create({
       title,
       userId,
       description,
       date: new Date().toString().split(" ").slice(1, 4).join(" "),
-      image: postImageName,
+    //   image: postImageName,
     });
-    await postImage.mv(`./images/${postImageName}`);
+    // await postImage.mv(`./images/${postImageName}`);
     const findJourney = await Journey.findOne({
       where: { id: postJourney.id },
       include: {

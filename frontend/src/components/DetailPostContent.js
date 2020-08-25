@@ -13,10 +13,17 @@ function DetailPostContent({ posts }) {
           </div>
         </div>
         <h1 style={{ color: "#3B97D3" }}>{detail.date}</h1>
-        <img src={dewatadetail} className="w-full mt-10" />
+        {detail.image ? 
+        <img src={`http://localhost:5000/image/${detail.image}`} className="w-full mt-10" />
+        : null
+    }
         <h3 className="mt-10" style={{ color: "#6C6C6C" }}>
-          {detail.description}
+          {/* {detail.description}] */}
         </h3>
+
+        <div dangerouslySetInnerHTML={{__html: detail.description}}>
+
+        </div>
         {/* <h3 className="mt-5 text-3xl">Bersemayam di tanah</h3>
         <h3 className="text-3xl">Dewata Ke dua</h3>
         <h3 className="mt-5" style={{color: '#6C6C6C'}}>
