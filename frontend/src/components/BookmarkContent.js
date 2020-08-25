@@ -1,8 +1,14 @@
 import React from "react";
 import minibookmark from "../image/minibookmark.svg";
+import { useHistory } from "react-router-dom";
 
 function BookmarkContent({ posts }) {
   const array = posts.data.data;
+  const history = useHistory();
+
+  const clickDetail = (id) => {
+    history.push(`/detail-post/${id}`);
+  };
   return (
     <>
       <div className="mt-12 px-10">
@@ -11,12 +17,20 @@ function BookmarkContent({ posts }) {
           {array.length > 0 ? (
             array.map((val) => {
               return (
-                <div key={val.id} className="relative bg-white rounded shadow-md">
-                  <img src={`http://localhost:5000/image/${val.journey.image}`} className="w-full" />
-                  <div className="my-3 px-4">
-                    <h2 className="font-bold text-lg">
-                      {val.journey.title}
-                    </h2>
+                <div
+                  key={val.id}
+                  className="relative bg-white rounded shadow-md"
+                >
+                  <img
+                    src={`http://localhost:5000/image/${val.journey.image}`}
+                    className="w-full cursor-pointer"
+                    onClick={() => clickDetail(val.id)}
+                  />
+                  <div
+                    className="my-3 px-4 cursor-pointer"
+                    onClick={() => clickDetail(val.id)}
+                  >
+                    <h2 className="font-bold text-lg">{val.journey.title}</h2>
                     <h3
                       className="font-light text-xs"
                       style={{ color: "#BFBFBF" }}

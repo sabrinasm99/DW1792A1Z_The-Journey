@@ -87,3 +87,29 @@ exports.readDetailJourney = async (req, res) => {
     });
   }
 };
+
+exports.readJourneysByUserId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const journeys = await Journey.findAll({
+      where: { userId: id },
+      include: {
+        model: User,
+        as: "user",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
+      },
+      attributes: {
+        exclude: ["userId", "UserId", "createdAt", "updatedAt"],
+      },
+    });
+    res.status(200).send({ message: "Response Success", data: journeys });
+  } catch (err) {
+    res.status(500).send({
+      error: {
+        message: err.message,
+      },
+    });
+  }
+};
