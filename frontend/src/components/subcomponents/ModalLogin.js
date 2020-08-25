@@ -1,40 +1,33 @@
 import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-// import { useMutation } from "react-query";
 import atlas from "../../image/atlas.svg";
 import leaf from "../../image/leaf.svg";
-// import axios from "axios";
+import axios from "axios";
 
 function ModalLogin({ setShowModalLogin }) {
   const location = useLocation();
   const history = useHistory();
   const currentPathname = location.pathname;
-//   const [inputLogin, setInputLogin] = useState({
-//     email: "",
-//     password: "",
-//   });
-//   const handleChangeLogin = (event) => {
-//     setInputLogin({
-//       ...inputLogin,
-//       [event.target.name]: event.target.value,
-//     });
-//   };
-//   const submitLogin = (event) => {
-//     event.preventDefault();
-//     axios.post("http://localhost:5000/api/v1/login", inputLogin).then((res) => {
-//       localStorage.setItem("email", res.data.data.email);
-//       localStorage.setItem("token", res.data.data.token);
-//       localStorage.setItem("role", res.data.data.role);
-//       localStorage.setItem("userId", res.data.data.id);
-//       localStorage.setItem("image", res.data.data.image);
-//       setShowModalLogin(false);
-//       if (localStorage.role !== "Admin") {
-//         history.push(currentPathname);
-//       } else {
-//         history.push("/list-transaction");
-//       }
-//     });
-//   };
+  const [inputLogin, setInputLogin] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChangeLogin = (event) => {
+    setInputLogin({
+      ...inputLogin,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const submitLogin = (event) => {
+    event.preventDefault();
+    axios.post("http://localhost:5000/api/v1/login", inputLogin).then((res) => {
+      localStorage.setItem("email", res.data.data.email);
+      localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("userId", res.data.data.id);
+      setShowModalLogin(false);
+      history.push(currentPathname);
+    });
+  };
 
   return (
     <>
@@ -64,8 +57,8 @@ function ModalLogin({ setShowModalLogin }) {
             }}
             type="text"
             name="email"
-            // value={inputLogin.email}
-            // onChange={handleChangeLogin}
+            value={inputLogin.email}
+            onChange={handleChangeLogin}
           />
         </div>
         <div className="mt-5">
@@ -78,13 +71,13 @@ function ModalLogin({ setShowModalLogin }) {
             }}
             type="password"
             name="password"
-            // value={inputLogin.password}
-            // onChange={handleChangeLogin}
+            value={inputLogin.password}
+            onChange={handleChangeLogin}
           />
         </div>
         <div className="mt-8">
           <button
-            // onClick={submitLogin}
+            onClick={submitLogin}
             className="w-full p-1 px-3 bg-purple-800 text-white focus:outline-none border rounded font-bold"
             style={{ backgroundColor: "#2E86DE", borderColor: "#2E86DE" }}
           >
