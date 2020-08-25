@@ -56,13 +56,16 @@ function HomeContent({ posts }) {
         {array.length > 0 ? (
           array.map((val) => {
             return (
-              <div
-                key={val.id}
-                
-                className="relative bg-white rounded shadow-md"
-              >
-                <img src={`http://localhost:5000/image/${val.image}`} className="w-full cursor-pointer" onClick={() => clickDetail(val.id)} />
-                <div className="my-3 px-4 cursor-pointer" onClick={() => clickDetail(val.id)}>
+              <div key={val.id} className="relative bg-white rounded shadow-md">
+                <img
+                  src={`http://localhost:5000/image/${val.image}`}
+                  className="w-full cursor-pointer"
+                  onClick={() => clickDetail(val.id)}
+                />
+                <div
+                  className="my-3 px-4 cursor-pointer"
+                  onClick={() => clickDetail(val.id)}
+                >
                   <h2 className="font-bold text-lg">{val.title}</h2>
                   <h3
                     className="font-light text-xs"
