@@ -1,5 +1,4 @@
 import React from "react";
-import dewata from "../image/dewata.png";
 import minibookmark from "../image/minibookmark.svg";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
